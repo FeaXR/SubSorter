@@ -1,0 +1,42 @@
+services:
+  app:
+    build: .
+    image: youtube-playlist-adder
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    env_file: .env
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /data/database.sqlite
+      RUN_MIGRATIONS: "true"
+    volumes:
+      - data:/data
+
+  # Optional: automatic sync on the AUTO_SYNC_CRON schedule.
+  # Start it with: docker compose --profile scheduler up -d
+  scheduler:
+    image: youtube-playlist-adder
+    profiles: [scheduler]
+    restart: unless-stopped
+    command: ["runuser", "-u", "www-data", "--", "php", "artisan", "schedule:work"]
+    # The image's health check probes the web server, which this container doesn't run
+    healthcheck:
+      disable: true
+    env_file: .env
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /data/database.sqlite
+      RUN_MIGRATIONS: "false"
+    volumes:
+      - data:/data
+    depends_on:
+      app:
+        condition: service_healthy
+
+volumes:
+  data:

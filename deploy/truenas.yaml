@@ -1,0 +1,66 @@
+# Example deployment for TrueNAS SCALE (Apps -> Discover Apps -> ⋮ -> Install via YAML).
+# Works with any Docker Compose host as well. Replace every <...> placeholder before installing.
+
+x-app-env: &app-env
+  APP_NAME: Playlist Adder
+  APP_ENV: production
+  APP_DEBUG: "false"
+  # Public HTTPS URL of the app (Google only allows plain http for localhost)
+  APP_URL: https://<your-domain>
+  # APP_KEY is generated on first start and stored in /data/app_key
+
+  GOOGLE_CLIENT_ID: <client-id>.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: <client-secret>
+  # Must also be registered in Google Cloud as an "Authorized redirect URI"
+  GOOGLE_REDIRECT_URI: https://<your-domain>/auth/google/callback
+
+  # Shorts setting for newly found channels; changeable per channel on the Channels page
+  INCLUDE_SHORTS: "false"
+  # Timezone used to show and enter times in the UI, e.g. Europe/London
+  DISPLAY_TIMEZONE: UTC
+
+  # Leave empty for manual review only, e.g. "0 */6 * * *" to add new videos automatically every 6 hours
+  AUTO_SYNC_CRON: ""
+
+  # Anyone who can open the UI can edit your playlists. Set these unless the app is
+  # protected otherwise (e.g. Cloudflare Access, VPN only). Leave both empty to disable.
+  BASIC_AUTH_USER: <user>
+  BASIC_AUTH_PASSWORD: <password>
+
+  DB_CONNECTION: sqlite
+  DB_DATABASE: /data/database.sqlite
+  SESSION_DRIVER: database
+  CACHE_STORE: database
+  LOG_CHANNEL: stderr
+
+services:
+  app:
+    # Image published by this repository's GitHub Action; use your fork's image if you build your own
+    image: ghcr.io/feaxr/youtubeplaylistvideoadder:latest
+    pull_policy: always
+    restart: unless-stopped
+    ports:
+      - "8085:80"
+    environment:
+      <<: *app-env
+      RUN_MIGRATIONS: "true"
+    volumes:
+      - /mnt/<pool>/apps/playlist-adder:/data
+
+  # Runs the AUTO_SYNC_CRON schedule (idles when AUTO_SYNC_CRON is empty)
+  scheduler:
+    image: ghcr.io/feaxr/youtubeplaylistvideoadder:latest
+    pull_policy: always
+    restart: unless-stopped
+    command: ["runuser", "-u", "www-data", "--", "php", "artisan", "schedule:work"]
+    # The image's health check probes the web server, which this container doesn't run
+    healthcheck:
+      disable: true
+    environment:
+      <<: *app-env
+      RUN_MIGRATIONS: "false"
+    volumes:
+      - /mnt/<pool>/apps/playlist-adder:/data
+    depends_on:
+      app:
+        condition: service_healthy
