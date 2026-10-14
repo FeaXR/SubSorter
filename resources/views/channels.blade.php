@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Channels – Playlist Adder')
+@section('title', 'Channels – SubSorter')
 
 @section('styles')
     table { width: 100%; border-collapse: collapse; }

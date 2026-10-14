@@ -24,6 +24,6 @@ class BasicAuth
             return $next($request);
         }
 
-        return response('Unauthorized', 401, ['WWW-Authenticate' => 'Basic realm="Playlist Adder"']);
+        return response('Unauthorized', 401, ['WWW-Authenticate' => 'Basic realm="SubSorter"']);
     }
 }

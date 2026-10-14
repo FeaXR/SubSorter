@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Playlist Adder')</title>
+    <title>@yield('title', 'SubSorter')</title>
     <style>
         :root {
             --bg: #f6f6f7; --card: #fff; --text: #1d1d20; --muted: #6b6b75; --border: #e2e2e6;
@@ -60,7 +60,7 @@
 <body>
 <main>
     <nav>
-        <h1>Playlist Adder</h1>
+        <h1>SubSorter</h1>
         <a href="{{ route('dashboard') }}" @class(['active' => request()->routeIs('dashboard')])>Videos</a>
         <a href="{{ route('channels.index') }}" @class(['active' => request()->routeIs('channels.*')])>Channels</a>
     </nav>

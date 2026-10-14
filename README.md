@@ -1,12 +1,39 @@
-# YoutubePlaylistVideoAdder
+# SubSorter
 
-A small self-hosted web app that collects new uploads from the YouTube channels you're
-subscribed to and adds them to playlists on your own channel, with a per-channel choice
-of target playlist.
+**Sort new uploads from your YouTube subscriptions into your own playlists.**
+
+SubSorter is a small self-hosted web app. It collects new uploads from the channels you're
+subscribed to and adds them to playlists on your channel, with a target playlist of your
+choice for each channel.
 
 Think of it as a subscription feed you can turn into playlists: check for new uploads,
 review the list, and accept them into the right playlists in one click. Or let it run on a
 schedule without review.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/dashboard-dark.png">
+  <img src="docs/screenshots/dashboard-light.png" alt="SubSorter's Videos page: new uploads grouped by target playlist, with thumbnails, ready to be accepted" width="720">
+</picture>
+
+## Screenshots
+
+**Channels:** choose a target playlist and Videos / Shorts per channel. Rows are
+color-coded by playlist, and the legend shows how many channels feed each one.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/channels-dark.png">
+  <img src="docs/screenshots/channels-light.png" alt="Channels page: each subscription with Videos and Shorts checkboxes and a target playlist dropdown, color-coded by playlist" width="720">
+</picture>
+
+**Filter and search:** click a playlist in the legend to see every channel that feeds it.
+Search ignores accents, so `cafe` finds *Café Cartography*.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/channels-filtered-dark.png">
+  <img src="docs/screenshots/channels-filtered-light.png" alt="Channels page filtered to the default playlist and searched for 'cafe', showing Café Cartography" width="720">
+</picture>
+
+<sub>Screenshots use fictional channels and videos with placeholder thumbnails.</sub>
 
 ## Features
 

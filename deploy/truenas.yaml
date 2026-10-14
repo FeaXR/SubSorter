@@ -2,7 +2,7 @@
 # Works with any Docker Compose host as well. Replace every <...> placeholder before installing.
 
 x-app-env: &app-env
-  APP_NAME: Playlist Adder
+  APP_NAME: SubSorter
   APP_ENV: production
   APP_DEBUG: "false"
   # Public HTTPS URL of the app (Google only allows plain http for localhost)
