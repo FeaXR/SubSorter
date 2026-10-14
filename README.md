@@ -1,5 +1,10 @@
 # SubSorter
 
+[![CI](https://github.com/FeaXR/YoutubePlaylistVideoAdder/actions/workflows/ci.yml/badge.svg)](https://github.com/FeaXR/YoutubePlaylistVideoAdder/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/FeaXR/YoutubePlaylistVideoAdder?label=release&sort=semver)](https://github.com/FeaXR/YoutubePlaylistVideoAdder/releases/latest)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io-2496ED?logo=docker&logoColor=white)](https://github.com/FeaXR/YoutubePlaylistVideoAdder/pkgs/container/youtubeplaylistvideoadder)
+[![License: MIT](https://img.shields.io/github/license/FeaXR/YoutubePlaylistVideoAdder)](LICENSE)
+
 **Sort new uploads from your YouTube subscriptions into your own playlists.**
 
 SubSorter is a small self-hosted web app. It collects new uploads from the channels you're
@@ -104,17 +109,25 @@ start and keeps it in the data volume. The stored Google token is encrypted with
 
 ### 3. Run
 
-Build and run locally:
+**Prebuilt image:** every push to `main` publishes `latest`, and every release publishes
+its version number:
+
+```bash
+docker pull ghcr.io/feaxr/youtubeplaylistvideoadder:latest   # newest build of main
+docker pull ghcr.io/feaxr/youtubeplaylistvideoadder:1.0.0    # a specific release
+```
+
+[`deploy/truenas.yaml`](deploy/truenas.yaml) is a complete Compose file using this image. It
+works on TrueNAS SCALE ("Install via YAML") as well as any other Docker host. Pin a version
+tag instead of `latest` if you prefer to update deliberately.
+
+**Or build it yourself** from a clone:
 
 ```bash
 docker compose up -d --build
 # optional automatic sync:
 docker compose --profile scheduler up -d
 ```
-
-Or use the published image (`ghcr.io/<owner>/<repo>:latest`). See
-[`deploy/truenas.yaml`](deploy/truenas.yaml) for a complete Compose example, which works on
-TrueNAS SCALE ("Install via YAML") as well as any other Docker host.
 
 All state lives in the `/data` volume: the SQLite database and the generated app key.
 
