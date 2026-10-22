@@ -54,6 +54,9 @@
         .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; background: hsl(var(--h) 65% var(--pl-l)); }
         .channel { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
         form { margin: 0; }
+        footer { text-align: center; padding: 0 16px 24px; font-size: 13px; }
+        footer a { color: var(--muted); text-decoration: none; }
+        footer a:hover { color: var(--text); text-decoration: underline; }
         @yield('styles')
     </style>
 </head>
@@ -77,6 +80,10 @@
 
     @yield('content')
 </main>
+
+<footer>
+    <a href="https://github.com/FeaXR" target="_blank" rel="noopener">Made by Fixr</a>
+</footer>
 
 <script>
     // Long-running actions: disable all buttons and show what's happening
