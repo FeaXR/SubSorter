@@ -26,6 +26,24 @@
     .legend button { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 99px; font-size: 13px; }
     .legend button.active { border-color: var(--text); }
     .legend .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+    /* Narrow screens: channel name on its own line, checkboxes and dropdown below it */
+    @media (max-width: 640px) {
+        table, tbody { display: block; }
+        tr { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px 12px; padding: 8px 0 8px 10px; border-top: 1px solid var(--border); border-left: 4px solid transparent; }
+        tr[hidden] { display: none; }
+        td, td:first-child { display: block; padding: 0; border: 0; }
+        td:first-child { grid-column: 1 / -1; min-width: 0; }
+        td.content, td.target { width: auto; }
+        td.target { text-align: left; }
+        .channel span { overflow-wrap: anywhere; }
+        tr.colored { border-left-color: hsl(var(--h) 65% var(--pl-l)); }
+        tr.colored.via-default { border-left-color: hsl(var(--h) 65% var(--pl-l) / .5); }
+    }
+    /* Very narrow: dropdown gets its own line too */
+    @media (max-width: 360px) {
+        td.target { grid-column: 1 / -1; }
+    }
 @endsection
 
 @section('content')
