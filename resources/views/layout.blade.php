@@ -83,6 +83,8 @@
 
 <footer>
     <a href="https://github.com/FeaXR" target="_blank" rel="noopener">Made by Fixr</a>
+    <span class="muted">·</span>
+    <a href="https://fixr.fyi" target="_blank" rel="noopener">fixr.fyi</a>
 </footer>
 
 <script>
