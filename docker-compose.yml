@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    image: youtube-playlist-adder
+    image: subsorter
     restart: unless-stopped
     ports:
       - "${APP_PORT:-8080}:80"
@@ -18,7 +18,7 @@ services:
   # Optional: automatic sync on the AUTO_SYNC_CRON schedule.
   # Start it with: docker compose --profile scheduler up -d
   scheduler:
-    image: youtube-playlist-adder
+    image: subsorter
     profiles: [scheduler]
     restart: unless-stopped
     command: ["runuser", "-u", "www-data", "--", "php", "artisan", "schedule:work"]

@@ -36,7 +36,7 @@ x-app-env: &app-env
 services:
   app:
     # Image published by this repository's GitHub Action; use your fork's image if you build your own
-    image: ghcr.io/feaxr/youtubeplaylistvideoadder:latest
+    image: ghcr.io/feaxr/subsorter:latest
     pull_policy: always
     restart: unless-stopped
     ports:
@@ -49,7 +49,7 @@ services:
 
   # Runs the AUTO_SYNC_CRON schedule (idles when AUTO_SYNC_CRON is empty)
   scheduler:
-    image: ghcr.io/feaxr/youtubeplaylistvideoadder:latest
+    image: ghcr.io/feaxr/subsorter:latest
     pull_policy: always
     restart: unless-stopped
     command: ["runuser", "-u", "www-data", "--", "php", "artisan", "schedule:work"]

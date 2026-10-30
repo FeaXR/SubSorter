@@ -1,9 +1,9 @@
 # SubSorter
 
-[![CI](https://github.com/FeaXR/YoutubePlaylistVideoAdder/actions/workflows/ci.yml/badge.svg)](https://github.com/FeaXR/YoutubePlaylistVideoAdder/actions/workflows/ci.yml)
-[![Latest release](https://img.shields.io/github/v/release/FeaXR/YoutubePlaylistVideoAdder?label=release&sort=semver)](https://github.com/FeaXR/YoutubePlaylistVideoAdder/releases/latest)
-[![Docker image](https://img.shields.io/badge/image-ghcr.io-2496ED?logo=docker&logoColor=white)](https://github.com/FeaXR/YoutubePlaylistVideoAdder/pkgs/container/youtubeplaylistvideoadder)
-[![License: MIT](https://img.shields.io/github/license/FeaXR/YoutubePlaylistVideoAdder)](LICENSE)
+[![CI](https://github.com/FeaXR/SubSorter/actions/workflows/ci.yml/badge.svg)](https://github.com/FeaXR/SubSorter/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/FeaXR/SubSorter?label=release&sort=semver)](https://github.com/FeaXR/SubSorter/releases/latest)
+[![Docker image](https://img.shields.io/badge/image-ghcr.io-2496ED?logo=docker&logoColor=white)](https://github.com/FeaXR/SubSorter/pkgs/container/subsorter)
+[![License: MIT](https://img.shields.io/github/license/FeaXR/SubSorter)](LICENSE)
 
 **Sort new uploads from your YouTube subscriptions into your own playlists.**
 
@@ -113,8 +113,8 @@ start and keeps it in the data volume. The stored Google token is encrypted with
 its version number:
 
 ```bash
-docker pull ghcr.io/feaxr/youtubeplaylistvideoadder:latest   # newest build of main
-docker pull ghcr.io/feaxr/youtubeplaylistvideoadder:1.0.0    # a specific release
+docker pull ghcr.io/feaxr/subsorter:latest   # newest build of main
+docker pull ghcr.io/feaxr/subsorter:1.0.0    # a specific release
 ```
 
 [`deploy/truenas.yaml`](deploy/truenas.yaml) is a complete Compose file using this image. It

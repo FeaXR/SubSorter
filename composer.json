@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "feaxr/youtube-playlist-adder",
+    "name": "feaxr/subsorter",
     "type": "project",
     "description": "Self-hosted web app that adds new uploads from your YouTube subscriptions to playlists of your choice, per channel.",
     "keywords": [
