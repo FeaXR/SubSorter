@@ -114,7 +114,7 @@ its version number:
 
 ```bash
 docker pull ghcr.io/feaxr/subsorter:latest   # newest build of main
-docker pull ghcr.io/feaxr/subsorter:1.0.0    # a specific release
+docker pull ghcr.io/feaxr/subsorter:1.0.1    # a specific release
 ```
 
 [`deploy/truenas.yaml`](deploy/truenas.yaml) is a complete Compose file using this image. It
